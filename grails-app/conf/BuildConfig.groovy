@@ -6,6 +6,9 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+// integrate the portal-grails plugin
+grails.plugin.location.'portal-app' = '../portal-grails/portal-app'
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -23,14 +26,12 @@ grails.project.dependency.resolution = {
         grailsHome()
         grailsCentral()
 
-        mavenLocal()
+        mavenLocal(null)
         mavenCentral()
 
-        // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+        // this lets us load maven dependencies from the BV repo; relies on ~/.grails/settings.groovy to have your credentials
+        // as described here: https://github.com/bazaarvoice/portal-grails/blob/master/doc/dev_environment_setup.md
+        mavenRepo "https://repo.bazaarvoice.com:443/nexus/content/groups/bazaarvoice"
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.

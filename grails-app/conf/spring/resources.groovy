@@ -1,3 +1,5 @@
-// Place your Spring DSL code here
+import com.bazaarvoice.portal.auth.UserProvider
+
 beans = {
+    portalUserProvider(UserProvider)
 }

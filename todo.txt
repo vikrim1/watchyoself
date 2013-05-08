@@ -1,1 +1,2 @@
 todo add note about adding a DB, add Mysql dialect
+remove unneeded password stuff from user

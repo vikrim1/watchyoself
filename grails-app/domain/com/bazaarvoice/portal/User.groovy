@@ -1,17 +1,25 @@
 package com.bazaarvoice.portal
 
-class User {
+import portal.auth.PortalUser
+
+class User implements PortalUser {
 
 	transient springSecurityService
 
 	String username
 	String password
+    String fullName
 	boolean enabled
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
 
-	static constraints = {
+    @Override
+    String getDisplayName() {
+        return fullName == null ? username : fullName
+    }
+
+    static constraints = {
 		username blank: false, unique: true
 		password blank: false
 	}

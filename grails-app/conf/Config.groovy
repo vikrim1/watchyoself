@@ -11,6 +11,9 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
+def httpPort = System.getProperty("grails.server.port.http", "8080")
+def httpsPort = System.getProperty("grails.server.port.https", "8443")
+
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
@@ -59,13 +62,16 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.app.context = "/"
+
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.serverURL = "https://sample.portal.bazaarvoice.com:" + httpsPort
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        // PORTAL-GRAILS TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
@@ -94,3 +100,5 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bazaarvoice.portal.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bazaarvoice.portal.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.bazaarvoice.portal.Role'
+grails.plugins.springsecurity.portMapper.httpPort = httpPort
+grails.plugins.springsecurity.portMapper.httpsPort = httpsPort
