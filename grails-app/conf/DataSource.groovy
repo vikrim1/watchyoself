@@ -3,6 +3,12 @@ dataSource {
     driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
+
+    // Sample Mysql config.  Note the custom dialect provided by portal-grails which fixes an issue with boolean persistence.
+    //driverClassName = "com.mysql.jdbc.Driver"
+    //dialect = "com.bazaarvoice.portal.database.MysqlInnoDbDialect"
+    //username = "root"
+    //password = ""
 }
 hibernate {
     cache.use_second_level_cache = true
