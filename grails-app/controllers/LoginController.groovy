@@ -41,17 +41,20 @@ class LoginController {
 	 */
 	def auth = {
 
-		def config = SpringSecurityUtils.securityConfig
+//		def config = SpringSecurityUtils.securityConfig
+//
+//		if (springSecurityService.isLoggedIn()) {
+//			redirect uri: config.successHandler.defaultTargetUrl
+//			return
+//		}
+//
+//		String view = 'auth'
+//		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+//		render view: view, model: [postUrl: postUrl,
+//		                           rememberMeParameter: config.rememberMe.parameter]
 
-		if (springSecurityService.isLoggedIn()) {
-			redirect uri: config.successHandler.defaultTargetUrl
-			return
-		}
-
-		String view = 'auth'
-		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-		render view: view, model: [postUrl: postUrl,
-		                           rememberMeParameter: config.rememberMe.parameter]
+        // we should never hit this since we're auth'ing against Portal... but just in case, DENIED!
+        response.sendError HttpServletResponse.SC_UNAUTHORIZED
 	}
 
 	/**

@@ -100,5 +100,19 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bazaarvoice.portal.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bazaarvoice.portal.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.bazaarvoice.portal.Role'
+grails.plugins.springsecurity.rejectIfNoRule = true
 grails.plugins.springsecurity.portMapper.httpPort = httpPort
 grails.plugins.springsecurity.portMapper.httpsPort = httpsPort
+// default to more secure rejectIfNoRule strategy
+grails.plugins.springsecurity.rejectIfNoRule = true
+// require https for all calls; also redirects http calls to https (http://grails-plugins.github.com/grails-spring-security-core/docs/manual/guide/17%20Channel%20Security.html)
+grails.plugins.springsecurity.secureChannel.definition = [
+        '/**':         'REQUIRES_SECURE_CHANNEL'
+]
+
+// PORTAL-GRAILS TODO you almost certainly want to change this approach to request mapping.  See you options here: http://grails-plugins.github.io/grails-spring-security-core/docs/manual/guide/5%20Configuring%20Request%20Mappings%20to%20Secure%20URLs.html
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugins.springsecurity.interceptUrlMap = [
+        '/login/denied':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/**':            ['ROLE_ADMIN']
+]
