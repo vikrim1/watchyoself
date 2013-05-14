@@ -31,6 +31,3 @@ target
 .idea
 out
 classes
-
-# Grails plugins
-portal-grails-starter/plugins
