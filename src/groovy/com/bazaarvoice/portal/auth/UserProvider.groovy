@@ -15,6 +15,10 @@ class UserProvider implements PortalUserProvider {
         User user = User.findByUsername(username)
 
         if (!user) {
+            /**
+             * We've never seen this user, but the Portal framework says they're allowed into our app, so create a
+             * user object so that we can send them on their way (and recognize them in the future)
+             */
             // PORTAL-GRAILS TODO modify this to create reasonable default users for your app
             User.withTransaction {
                 def userRole

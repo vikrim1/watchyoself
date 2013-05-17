@@ -71,7 +71,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // PORTAL-GRAILS TODO: grails.serverURL = "http://www.changeme.com"
+        // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "http://www.changeme.com"
     }
 }
 
