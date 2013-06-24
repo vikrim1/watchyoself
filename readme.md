@@ -30,10 +30,11 @@ Having a look at the [commits which created this starter app](https://github.com
 
 **I'm getting class not found errors.  What's going on?**
 * IDEA has a bit of trouble with transitive dependencies from inline plugins.  Try to build from the command line:
-```bash
-$ grails clean
-$ grails compile
-$ grails run-app
-```
-You can also try recreating your IDEA project
+
+    ```bash
+    $ grails clean
+    $ grails compile
+    $ grails run-app
+    ```
+    You can also try recreating your IDEA project
 
