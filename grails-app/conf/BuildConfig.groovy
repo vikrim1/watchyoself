@@ -6,6 +6,10 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+// PORTAL-GRAILS TODO delete these in-place plugins (they are used for plugin development)
+grails.plugin.location.'bv-common' = '../bv-grails-common'
+grails.plugin.location.'portal-app' = '../portal-grails/portal-app'
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -41,7 +45,6 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:$grailsVersion"
         runtime ":resources:1.2.RC2"
         compile ":spring-security-core:1.2.7.3"
-        compile ":portal-app:1.1.0"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -53,5 +56,9 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.2.1"
 
         compile ':cache:1.0.1'
+
+        // PORTAL-GRAILS TODO uncomment these and set to the latest version once you've deleted the in-place versions above
+//        compile ":portal-app:<VERSION>"
+//        compile ":bv-common:<VERSION>"
     }
 }
