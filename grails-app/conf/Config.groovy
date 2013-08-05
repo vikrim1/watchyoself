@@ -64,14 +64,33 @@ grails.hibernate.cache.queries = false
 
 grails.app.context = "/"
 
+grails.plugins.bvcommon.aws.bv.nexus.team='team-email@bazaarvoice.com'
+grails.plugins.bvcommon.aws.bv.nexus.role='instance-role'
+grails.plugins.bvcommon.aws.bv.nexus.ec2.key.name='team-ec2-key'
+grails.plugins.bvcommon.aws.instance.type='m1.medium'
+
 environments {
     development {
         grails.logging.jul.usebridge = true
         grails.serverURL = "https://sample.portal.bazaarvoice.com:" + httpsPort
     }
+    test {
+        // use "test" for BV "dev" environment, since "dev" is used in Grails for local development
+        grails.plugins.bvcommon.aws.deployment.env='dev'
+
+        // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "https://my-app-dev.bazaarvoice.com"
+        grails.serverURL = "https://reporting-dev.elasticbeanstalk.com"
+    }
+    qa {
+        grails.plugins.bvcommon.aws.deployment.env='qa'
+
+        // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "https://my-app-qa.bazaarvoice.com"
+    }
     production {
         grails.logging.jul.usebridge = false
-        // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "http://www.changeme.com"
+
+        grails.plugins.bvcommon.aws.deployment.env='qa'
+        // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "https://my-app.bazaarvoice.com"
     }
 }
 
