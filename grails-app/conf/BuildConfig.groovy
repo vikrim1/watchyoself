@@ -1,10 +1,12 @@
+import grails.util.Environment
+
 grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.war.file = "target/${appName}-${Environment.current.name}-${"git rev-parse --short HEAD".execute().text.replace('\n', '')}.war"
 
 // PORTAL-GRAILS TODO delete these in-place plugins (they are used for plugin development)
 grails.plugin.location.'bv-common' = '../bv-grails-common'
