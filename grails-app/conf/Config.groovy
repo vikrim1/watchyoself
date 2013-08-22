@@ -86,7 +86,7 @@ grails.plugins.springsecurity.secureChannel.definition = [
 // PORTAL-GRAILS TODO you almost certainly want to change this approach to request mapping.  See you options here: http://grails-plugins.github.io/grails-spring-security-core/docs/manual/guide/5%20Configuring%20Request%20Mappings%20to%20Secure%20URLs.html
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 grails.plugins.springsecurity.interceptUrlMap = [
-        '/login/denied':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+        '/login/denied':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/**':            ['ROLE_ADMIN']
 ]
 
@@ -123,7 +123,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
 
-        grails.plugins.bvcommon.aws.deployment.env='qa'
+        grails.plugins.bvcommon.aws.deployment.env='prod'
         // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "https://my-app.bazaarvoice.com"
     }
 }
