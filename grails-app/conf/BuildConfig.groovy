@@ -8,10 +8,6 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 grails.project.war.file = "target/${appName}-${Environment.current.name}-${"git rev-parse --short HEAD".execute().text.replace('\n', '')}.war"
 
-// PORTAL-GRAILS TODO delete these in-place plugins (they are used for plugin development)
-grails.plugin.location.'bv-common' = '../bv-grails-common'
-grails.plugin.location.'portal-app' = '../portal-grails/portal-app'
-
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -59,8 +55,8 @@ grails.project.dependency.resolution = {
 
         compile ':cache:1.0.1'
 
-        // PORTAL-GRAILS TODO uncomment these and set to the latest version once you've deleted the in-place versions above
-//        compile ":portal-app:<VERSION>"
-//        compile ":bv-common:<VERSION>"
+        // PORTAL-GRAILS TODO ensure these are the latest version of our plugins
+        compile ":portal-app:1.1.2"
+        compile ":bv-common:1.0.6"
     }
 }

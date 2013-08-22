@@ -20,7 +20,7 @@ $ git push -u origin master # push the starter app your project, marking it as "
 
 Once you've built and launched the base app, you'll want to search your project for `PORTAL-GRAILS TODO` to see specific places where you should be modifying the provided code.
 
-You'll probably also want to have a look at the Portal Grails [readme](https://github.com/bazaarvoice/portal-grails), and specifically the [installation instructions](https://github.com/bazaarvoice/portal-grails/blob/master/doc/installation.md) to see what you're getting (since the `portal-grails-starter` code you're developing your project on was created by running `grails create-app`, and then doing the Portal Grails `portal-app-plugin` install.
+You'll probably also want to have a look at the Portal Grails [readme](https://github.com/bazaarvoice/portal-grails), and specifically the [installation instructions](https://github.com/bazaarvoice/portal-grails/blob/master/doc/installation.md) to see what you're getting (since the `portal-grails-starter` code you're developing your project on was created by running `grails create-app`, and then doing the Portal Grails `portal-app-plugin` install)
 
 Having a look at the [commits which created this starter app](https://github.com/bazaarvoice/portal-grails-starter/commits/master) is also a good way to get a jumpstart on understanding the provided code.
 
@@ -28,13 +28,7 @@ Having a look at the [commits which created this starter app](https://github.com
 **Isn't forking a starter repo bad practice?  How will I get updates to the base code?**
 * the base code here is simply an integration with the [Portal Grails Plugin](https://github.com/bazaarvoice/portal-grails), which is where the shared code actually lives and can be versioned and updated like any dependency
 
-**I'm getting class not found errors.  What's going on?**
-* IDEA has a bit of trouble with transitive dependencies from inline plugins.  Try to build from the command line:
-
-    ```bash
-    $ grails clean
-    $ grails compile
-    $ grails run-app
-    ```
-    You can also try recreating your IDEA project
+**What other projects are using the [Portal Grails](https://github.com/bazaarvoice/portal-grails) plugin?**
+* [Next-gen Portal Reporting](https://github.com/bazaarvoice/reporting-web)
+* [BV Local](https://github.com/bazaarvoice/local) (in their [Dashboard](https://github.com/bazaarvoice/local/tree/master/dashboard) app)
 
