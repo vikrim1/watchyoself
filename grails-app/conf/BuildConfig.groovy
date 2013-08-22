@@ -45,7 +45,7 @@ grails.project.dependency.resolution = {
 
     plugins {
         runtime ":hibernate:$grailsVersion"
-        runtime ":resources:1.2.RC2"
+        runtime ":resources:1.2"
         compile ":spring-security-core:1.2.7.3"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
