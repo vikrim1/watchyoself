@@ -64,8 +64,9 @@ grails.hibernate.cache.queries = false
 
 grails.app.context = "/"
 
-grails.plugins.bvcommon.aws.bv.nexus.team='team-email@bazaarvoice.com'
-grails.plugins.bvcommon.aws.bv.nexus.role='instance-role'
+// PORTAL-GRAILS TODO update these tags to be appropriate for your team
+grails.plugins.bvcommon.aws.bv.nexus.team='reporting@bazaarvoice.com'
+grails.plugins.bvcommon.aws.bv.nexus.role='reporting'
 grails.plugins.bvcommon.aws.bv.nexus.ec2.key.name='team-ec2-key'
 grails.plugins.bvcommon.aws.instance.type='m1.medium'
 
