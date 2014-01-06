@@ -28,7 +28,7 @@ class UserProvider implements PortalUserProvider {
                     userRole = new Role(authority: 'ROLE_USER').save(flush: true)
                 }
                 // PORTAL-GRAILS TODO associate this user with the client in userEntity
-                user = new User([username: username, fullName: userEntity.getDisplayName(), enabled: true, password: 'unused'])
+                user = new User([username: username, fullName: userEntity.getDisplayName(), enabled: true])
                 user.save(flush: true)
                 UserRole.create(user, userRole)
             }

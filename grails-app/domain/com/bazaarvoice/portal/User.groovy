@@ -4,8 +4,6 @@ import portal.auth.PortalUser
 
 class User implements PortalUser {
 
-	transient springSecurityService
-
 	String username
 	String password
     String fullName
@@ -28,21 +26,15 @@ class User implements PortalUser {
 		password column: '`password`'
 	}
 
+    String getPassword() {
+        return 'unused'
+    }
+
+    void setPassword(String ignored) {
+        // no-op.  We don't manage passwords.  They are handled by the Portal SSO.
+    }
+
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role } as Set
-	}
-
-	def beforeInsert() {
-		encodePassword()
-	}
-
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
-
-	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
 	}
 }
