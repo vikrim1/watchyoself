@@ -23,9 +23,9 @@ class UserProvider implements PortalUserProvider {
             User.withTransaction {
                 def userRole
                 if (userEntity.isInternalUser()) {
-                    userRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+                    userRole = Role.findOrSaveByAuthority('ROLE_ADMIN')
                 } else {
-                    userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+                    userRole = Role.findOrSaveByAuthority('ROLE_USER')
                 }
                 // PORTAL-GRAILS TODO associate this user with the client in userEntity
                 user = new User([username: username, fullName: userEntity.getDisplayName(), enabled: true])
