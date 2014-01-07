@@ -32,6 +32,9 @@ grails.mime.types = [
     xml:           ['text/xml', 'application/xml']
 ]
 
+// complain loudly if a database operation is rejected
+grails.gorm.failOnError = true
+
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
