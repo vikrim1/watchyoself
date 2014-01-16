@@ -6,7 +6,6 @@ import com.bazaarvoice.portalsdk.client.UserEntity
 import grails.test.mixin.Mock
 import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
-import org.junit.Before
 import portal.auth.PortalUser
 
 @TestMixin(GrailsUnitTestMixin)
@@ -15,12 +14,12 @@ class UserProviderTest {
 
     UserProvider userProvider
 
-    @Before
-    void setUp() {
+    void init() {
         userProvider = new UserProvider()
     }
 
     void testCreateUser() {
+        init()
         def entity = new UserEntity("testClient", "testClient/testUserName")
         entity.displayName = "Test Display Name"
         PortalUser user = userProvider.getUser(entity)
@@ -30,9 +29,10 @@ class UserProviderTest {
 
     /**
      * Regression test for a uniqueness constraint issue we were running into trying to
-     * get two different users
+     * get two different users¥
      */
     void testCreateMultipleUsers() {
+        init()
         def entityOne = new UserEntity("testClient", "testClient/testUserOne")
         entityOne.displayName = "Test Display Name One"
 
