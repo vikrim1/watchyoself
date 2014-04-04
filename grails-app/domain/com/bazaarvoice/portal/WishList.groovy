@@ -1,7 +1,7 @@
 package com.bazaarvoice.portal
 
 class WishList {
-    String productName
+    List<WYSProduct> products
 
     static constraints = {
     }

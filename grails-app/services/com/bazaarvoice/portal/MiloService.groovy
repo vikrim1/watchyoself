@@ -43,7 +43,7 @@ class MiloService {
         response.data
     }
 
-    def getProductAvailability(List<String> offers, float lat, float lng, int radius) {
+    def getProductAvailability(List<MLOffer> offers, float lat, float lng, int radius) {
         def params = [
                 (API_KEY_PARAM_KEY): API_KEY,
                 (OFFER_IDS_PARAM_KEY): offers.join(","),
@@ -53,7 +53,6 @@ class MiloService {
         ]
 
         def response = getProductAvailabilityClient().get(path: RTPAL_API_PATH, query: params)
-
 
         println response.data
 
