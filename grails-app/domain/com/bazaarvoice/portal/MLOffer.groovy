@@ -5,25 +5,13 @@ class MLOffer {
     static constraints = {
     }
 
-     int offerId;
-     int merchantId;
+     String offerId;
+     String merchantId;
      String merchantName;
-     String merchantLogo;
-     String merchantProductUrl;
-     int priceSource;
-     float price;
+     int price;
      String prettyPrice;
-     float salePrice;
-     String prettySalePrice;
-     float currentPrice;
+     String salePrice;
+     String currentPrice;
      String prettyCurrentPrice;
      List<MLVariation> variations;
-
-    float getSmallestCurrentPrice() {
-
-    }
-
-    String getSmallestPrettyCurrentPrice() {
-
-    }
 }
