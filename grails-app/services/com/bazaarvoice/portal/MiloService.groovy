@@ -55,24 +55,6 @@ class MiloService {
         response.data
     }
 
-
-
-    def getOfferIdsForProducts(List<MLProduct> products) {
-        List<String> offerIds = new ArrayList<String>()
-        for (MLProduct product : products) {
-            for (MLOffer offer : product.offers) {
-                if (offer.variations != null && offer.variations.size() > 0) {
-                    for (MLVariation variation : offer.variations) {
-                        String offerMap = "${offer.offerId}:${variation.variationId}"
-                        offerIds.add(offerMap)
-                    }
-                } else {
-                    offerIds.add(offer.offerId as String)
-                }
-            }
-        }
-    }
-
     RESTClient getProductDataClient() {
         new RESTClient(PRODUCT_DATA_API_URL, ContentType.JSON)
     }
