@@ -1,7 +1,5 @@
 package com.bazaarvoice.portal.auth
-import com.bazaarvoice.portal.Role
-import com.bazaarvoice.portal.User
-import com.bazaarvoice.portal.UserRole
+
 import com.bazaarvoice.portalsdk.client.UserEntity
 import grails.test.mixin.Mock
 import grails.test.mixin.TestMixin

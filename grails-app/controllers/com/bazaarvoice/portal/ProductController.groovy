@@ -1,5 +1,7 @@
 package com.bazaarvoice.portal
 
+import groovy.json.JsonBuilder
+
 class ProductController {
 
     static allowedMethods = [index: 'GET']
@@ -13,7 +15,7 @@ class ProductController {
         String lat = params.lat
         String lng = params.lng
 
-        WishList wishList = WishList.findOrCreateById(1)
+        WishList wishList = WishList.findOrSaveById(1)
         WYSProduct product = new WYSProduct(name: productName)
         wishList.products.add(product)
         wishList.save(flush: true, failOnError: true)
@@ -25,6 +27,8 @@ class ProductController {
                 p.miloProductInfo = new MLProduct()
             }
         }
+
+        render(status: 200)
     }
 
     def isNearby(){
@@ -37,9 +41,11 @@ class ProductController {
         for (WYSProduct product : wishList.products) {
             def miloResponse =
                 miloService.getProductAvailability(product.miloProductInfo.offers, lat as float, lng as float, radius)
-
+            if (miloResponse) {
+                response.setContentType('application/json')
+                response.outputStream << new JsonBuilder(miloResponse).toString()
+                return
+            }
         }
-
-        //return null or nearby locations + product + price
     }
 }
