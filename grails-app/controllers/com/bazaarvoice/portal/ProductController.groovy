@@ -10,14 +10,14 @@ class ProductController {
 
     def index() {}
 
-    def addToWishList(){
+    def addToWishList() {
         String productQuery = params.name
         String lat = params.lat
         String lng = params.lng
 
         WishList wishList = WishList.findOrSaveById(1)
-        WYSProductQuery query = new WYSProductQuery(query: productQuery)
-        wishList.queries.add(query)
+        WYSProductQuery query = new WYSProductQuery(query: productQuery).save()
+        wishList.addToQueries(query)
         wishList.save(flush: true, failOnError: true)
 
         for (WYSProductQuery q : wishList.queries) {
@@ -25,7 +25,7 @@ class ProductController {
                 def miloResponse = miloService.getProductData(q.query, lat as float, lng as float)
 
                 List<MLProduct> result = new ArrayList<MLProduct>()
-                for (def productJson : miloResponse.response.products) {
+                for (def productJson : (miloResponse.response.products as List).take(10)) {
                     List<MLOffer> offers = new ArrayList<MLOffer>()
                     for (def offer : productJson.offers) {
                         MLOffer o = new MLOffer(
@@ -37,17 +37,16 @@ class ProductController {
                                 salePrice: offer.sale_price as int,
                                 currentPrice: offer.current_price as int,
                                 prettyCurrentPrice: offer.pretty_current_price
-                        )
+                        ).save()
                         offers.add(o)
                     }
-
 
                     MLProduct p = new MLProduct(
                             name: productJson.name,
                             rtpalUrl: productJson.rtpal_url,
                             productId: productJson.product_id,
                             offers: offers
-                    )
+                    ).save()
                     result.add(p)
                 }
                 q.miloProductsInfo = result
@@ -55,26 +54,37 @@ class ProductController {
             }
         }
 
-        render(status: 200)
+        render (status: 200)
+        return
     }
 
-    def isNearby(){
+    def searchWishList() {
         String lat = params.lat
         String lng = params.lng
         int radius = 5
 
         WishList wishList = WishList.findById(1)
+        if (!wishList) {
+            render(status: 404, text: "No wishlist found")
+            return
+        }
 
         for (WYSProductQuery query : wishList.queries) {
             for (MLProduct product : query.miloProductsInfo) {
-                def miloResponse =
-                    miloService.getProductAvailability(product.offers, lat as float, lng as float, radius)
-                if (miloResponse) {
-                    response.setContentType('application/json')
-                    response.outputStream << new JsonBuilder(miloResponse).toString()
-                    return
+                for (MLOffer offer : product.offers) {
+                    def miloResponse =
+                        miloService.getProductAvailability(offer.offerId, lat as float, lng as float, radius)
+                    if (miloResponse && miloResponse.response.availabilities[0].results) {
+                        response.setContentType('application/json')
+                        response.outputStream << new JsonBuilder(miloResponse.response.availabilities[0].results[0]).toString()
+                        return
+                    }
                 }
             }
         }
+
+        response.setContentType('application/json')
+        response.outputStream << new JsonBuilder([:]).toString()
+        return
     }
 }

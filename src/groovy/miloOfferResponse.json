@@ -1,0 +1,60 @@
+{"response": {
+    "next_url": null,
+    "original_location": {
+        "lat_lng": "30.354675,-97.734085"
+    },
+    "zip_codes": ["78757"],
+    "availabilities": [
+        {
+            "offer_id": 52513067,
+            "results": [
+                {
+                    "store_label": null,
+                    "phone": "5127950014",
+                    "milo_store_url": "http://milo.com/best-buy-austin",
+                    "hours": "Sun 11:00-20:00 Mon 10:00-21:00 Tue 10:00-21:00 Wed 10:00-21:00 Thu 10:00-21:00 Fri 10:00-22:00 Sat 10:00-22:00",
+                    "current_price": null,
+                    "merchant_name": "Best Buy",
+                    "sub_merchant_id": null,
+                    "available": 1,
+                    "location_id": 380368,
+                    "distance": 2.34236531293707,
+                    "address": {
+                        "zip_code": "78759",
+                        "address": "9607 Research Blvd Ste 500",
+                        "state": "TX",
+                        "longitude": -97.74192,
+                        "latitude": 30.387857,
+                        "city": "Austin"
+                    },
+                    "as_of": 1396585605.836399,
+                    "merchant_id": 14005
+                },
+                {
+                    "store_label": null,
+                    "phone": "5123222047",
+                    "milo_store_url": "http://milo.com/best-buy-austin-2",
+                    "hours": "Sun 11:00-20:00 Mon 10:00-21:00 Tue 10:00-21:00 Wed 10:00-21:00 Thu 10:00-21:00 Fri 10:00-22:00 Sat 10:00-22:00",
+                    "current_price": null,
+                    "merchant_name": "Best Buy",
+                    "sub_merchant_id": null,
+                    "available": 4,
+                    "location_id": 381055,
+                    "distance": 3.6910364374108937,
+                    "address": {
+                        "zip_code": "78723",
+                        "address": "1201 Barbara Jordan Blvd",
+                        "state": "TX",
+                        "longitude": -97.70874,
+                        "latitude": 30.306004,
+                        "city": "Austin"
+                    },
+                    "as_of": 1396585605.836415,
+                    "merchant_id": 14005
+                }
+            ],
+            "status": "results",
+            "variation_id": null
+        }
+    ]
+}}
