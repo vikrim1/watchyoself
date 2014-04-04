@@ -8,7 +8,9 @@ class ProductController {
 
     MiloService miloService
 
-    def index() {}
+    def index() {
+        render (status: 200)
+    }
 
     def addToWishList() {
         String productQuery = params.name

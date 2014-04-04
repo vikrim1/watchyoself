@@ -1,4 +1,3 @@
-import grails.util.Environment
 
 grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
@@ -6,7 +5,10 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-grails.project.war.file = "target/${appName}-${Environment.current.name}-${"git rev-parse --short HEAD".execute().text.replace('\n', '')}.war"
+grails.project.war.file = "target/${appName}.war"
+
+grails.plugins.bvcommon.aws.health.check.target='HTTP:80/product/index'
+
 
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
@@ -52,12 +54,12 @@ grails.project.dependency.resolution = {
 
         build ":tomcat:7.0.47"
 
-        runtime ":database-migration:1.2.1"
+//        runtime ":database-migration:1.2.1"
 
         compile ':cache:1.0.1'
 
         // PORTAL-GRAILS TODO ensure these are the latest version of our plugins
 //        compile ":portal-app:1.1.2"
-        compile ":bv-common:3.1.0"
+//        compile ":bv-common:3.1.0"
     }
 }
