@@ -1,17 +1,16 @@
 package com.bazaarvoice.portal
 
-class WYSProduct {
+class WYSProductQuery {
 
     static constraints = {
         productId nullable: true
         starRating nullable: true
         reviewHighlight nullable: true
-        miloProductInfo nullable: true
     }
 
-    String name
+    String query
     String productId
     String starRating
     String reviewHighlight
-    MLProduct miloProductInfo
+    List<MLProduct> miloProductsInfo = new ArrayList<MLProduct>()
 }

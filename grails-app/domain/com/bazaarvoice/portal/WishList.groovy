@@ -1,7 +1,7 @@
 package com.bazaarvoice.portal
 
 class WishList {
-    List<WYSProduct> products
+    List<WYSProductQuery> queries = new ArrayList<WYSProductQuery>()
 
     static constraints = {
     }
