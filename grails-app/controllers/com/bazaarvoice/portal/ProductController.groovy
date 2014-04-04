@@ -17,6 +17,9 @@ class ProductController {
         String lat = params.lat
         String lng = params.lng
 
+        miloService.setLastLat(lat)
+        miloService.setLastLong(lng)
+
         WishList wishList = WishList.findOrSaveById(1)
         WYSProductQuery query = new WYSProductQuery(query: productQuery).save()
         wishList.addToQueries(query)
@@ -64,6 +67,8 @@ class ProductController {
         String lat = params.lat
         String lng = params.lng
         int radius = 1
+        miloService.setLastLat(lat)
+        miloService.setLastLong(lng)
 
         WishList wishList = WishList.findById(1)
         if (!wishList) {
@@ -78,6 +83,7 @@ class ProductController {
                         miloService.getProductAvailability(offer.offerId, lat as float, lng as float, radius)
                     if (miloResponse && (miloResponse.response.availabilities as List).size() > 0) {
                         HashMap responseJson = miloResponse.response.availabilities[0].results[0]
+                        if (responseJson == null) continue
                         responseJson.put("product_name", product.name)
                         responseJson.put("product_id", product.id)
                         response.setContentType('application/json')
@@ -91,5 +97,16 @@ class ProductController {
         response.setContentType('application/json')
         response.outputStream << new JsonBuilder([:]).toString()
         return
+    }
+
+    def lastLocation(){
+        def lastLat = miloService.getLastLat()
+        def lastLong = miloService.getLastLong()
+        def a = [url: "https://www.google.com/maps/embed/v1/search?key=AIzaSyAY1KUoh2rYogfCZFm_CF78nqk2fKk7oA0&q=store&center=${lastLat},${lastLong}&zoom=16"]
+        response.setContentType('application/json')
+        response.outputStream << new JsonBuilder(a).toString()
+    }
+
+    def map(){
     }
 }

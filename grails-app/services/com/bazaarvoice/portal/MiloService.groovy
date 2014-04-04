@@ -5,6 +5,9 @@ import groovyx.net.http.RESTClient
 
 class MiloService {
 
+    String lastLat = '30.338471'
+    String lastLong = '-97.703958'
+
     static final String API_KEY = "buzz01p"
     static final String API_KEY_PARAM_KEY = "api_key"
 
