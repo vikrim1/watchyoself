@@ -135,6 +135,8 @@ environments {
         // ensure spring security knows what ports we're serving from so it can do its redirects properly
         grails.plugins.springsecurity.portMapper.httpPort = httpPort
         grails.plugins.springsecurity.portMapper.httpsPort = httpsPort
+
+        grails.dbconsole.enabled = true
     }
     test {
         // use "test" for BV "dev" environment, since "dev" is used in Grails for local development
@@ -153,8 +155,12 @@ environments {
 
         grails.plugins.bvcommon.aws.deployment.env='prod'
         // PORTAL-GRAILS TODO product url goes here: grails.serverURL = "https://my-app.bazaarvoice.com"
+        grails.dbconsole.enabled = true
     }
 }
+
+
+grails.dbconsole.enabled = true
 
 // log4j configuration
 log4j = {

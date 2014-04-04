@@ -63,7 +63,7 @@ class ProductController {
     def searchWishList() {
         String lat = params.lat
         String lng = params.lng
-        int radius = 5
+        int radius = 1
 
         WishList wishList = WishList.findById(1)
         if (!wishList) {
@@ -76,9 +76,12 @@ class ProductController {
                 for (MLOffer offer : product.offers) {
                     def miloResponse =
                         miloService.getProductAvailability(offer.offerId, lat as float, lng as float, radius)
-                    if (miloResponse && miloResponse.response.availabilities[0].results) {
+                    if (miloResponse && (miloResponse.response.availabilities as List).size() > 0) {
+                        HashMap responseJson = miloResponse.response.availabilities[0].results[0]
+                        responseJson.put("product_name", product.name)
+                        responseJson.put("product_id", product.id)
                         response.setContentType('application/json')
-                        response.outputStream << new JsonBuilder(miloResponse.response.availabilities[0].results[0]).toString()
+                        response.outputStream << new JsonBuilder(responseJson).toString()
                         return
                     }
                 }
