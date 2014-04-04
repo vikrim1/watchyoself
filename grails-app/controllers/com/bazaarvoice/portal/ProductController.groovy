@@ -109,4 +109,25 @@ class ProductController {
 
     def map(){
     }
+
+    def updateLocation(){
+        def locations = [[30.3852124,-97.6742269],[30.3797887,-97.6753319],
+                [30.3741148,-97.678851], [30.3340596,-97.7041889],
+                [30.3285497,-97.7072573],
+                [30.3237434,-97.7087272], [30.3262653,-97.7062396],
+                [30.3196622,-97.7063898],
+                [30.3162817,-97.7064542]
+        ]
+
+        def count = 0
+        locations.each {
+            sleep(3000)
+            miloService.setLastLat(it[0].toString())
+            miloService.setLastLong(it[1].toString())
+            count++
+            if(count%3==0){
+                sleep(10000)
+            }
+        }
+    }
 }

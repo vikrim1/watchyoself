@@ -17,7 +17,7 @@
         $.get( "lastLocation", function( data ) {
             $("#maps").attr("src", data.url);
         });
-    }, 3000)
+    }, 5000)
 </script>
 </body>
 </html>
