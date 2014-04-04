@@ -8,9 +8,10 @@ class WYSProductQuery {
         reviewHighlight nullable: true
     }
 
+    static hasMany = [miloProductsInfo: MLProduct]
+
     String query
     String productId
     String starRating
     String reviewHighlight
-    List<MLProduct> miloProductsInfo = new ArrayList<MLProduct>()
 }
