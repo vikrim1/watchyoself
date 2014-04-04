@@ -43,7 +43,7 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:3.6.10.2"
         runtime ":resources:1.2"
-        compile ":spring-security-core:1.2.7.3"
+//        compile ":spring-security-core:1.2.7.3"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -57,7 +57,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.0.1'
 
         // PORTAL-GRAILS TODO ensure these are the latest version of our plugins
-        compile ":portal-app:1.1.2"
-        compile ":bv-common:1.0.6"
+//        compile ":portal-app:1.1.2"
+        compile ":bv-common:3.1.0"
     }
 }

@@ -77,7 +77,7 @@ grails.plugins.bvcommon.aws.instance.type='m1.medium'
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bazaarvoice.portal.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bazaarvoice.portal.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.bazaarvoice.portal.Role'
-grails.plugins.springsecurity.rejectIfNoRule = true
+grails.plugins.springsecurity.rejectIfNoRule = false
 grails.plugins.springsecurity.portMapper.httpPort = httpPort
 grails.plugins.springsecurity.portMapper.httpsPort = httpsPort
 // default to more secure rejectIfNoRule strategy
@@ -105,6 +105,25 @@ grails.plugins.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
 // load balancer ports to use in deployed environments
 grails.plugins.springsecurity.portMapper.httpPort = 80
 grails.plugins.springsecurity.portMapper.httpsPort = 443
+
+grails.plugins.springsecurity.filterChain.filterNames = [
+        'channelProcessingFilter',
+        'securityContextPersistenceFilter',
+        'logoutFilter',
+        'portalPreAuthFilter',
+        'authenticationProcessingFilter',
+        'securityContextHolderAwareRequestFilter',
+        'rememberMeAuthenticationFilter',
+        'anonymousAuthenticationFilter',
+        'exceptionTranslationFilter',
+        'filterInvocationInterceptor',
+        'exceptionTranslationFilter'
+]
+
+grails.plugins.springsecurity.filterChain.chainMap = [
+        '/product/**': 'JOINED_FILTERS, -portalPreAuthFilter, -channelProcessingFilter',
+        '/**': 'JOINED_FILTERS, -portalPreAuthFilter, -channelProcessingFilter'
+]
 
 environments {
     development {
